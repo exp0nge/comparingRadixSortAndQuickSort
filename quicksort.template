@@ -1,0 +1,39 @@
+namespace md_islam{
+	template<class Item>
+	quickSort<Item>::quickSort(Item xarr[], std::size_t l, std::size_t r){
+		for (std::size_t i = 0; i < SIZE; i++){
+			arr[i] = xarr[i];
+		}
+		dosort(l, r);
+	}
+	template<class Item>
+	void quickSort<Item>::dosort(std::size_t l, std::size_t r){
+		std::size_t i = l;
+		std::size_t j = r;
+		Item tmp;
+		Item pivot = arr[(l + r) / 2];
+		while (i <= j) {
+			while (arr[i] < pivot)
+				i++;
+			while (arr[j] > pivot)
+				j--;
+			if (i <= j) {
+				tmp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = tmp;
+				i++;
+				j--;
+			}
+		}
+		if (l < j)
+			dosort(l, j);
+		if (i < r)
+			dosort(i, r);
+	}
+	template<class Item>
+	void quickSort<Item>::print(){
+		for (std::size_t i = 0; i < this->SIZE; i++){
+			std::cout << arr[i] << ", ";
+		}
+	}
+}
